@@ -2,10 +2,18 @@ import React, { useEffect, createContext, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const AuthContext = createContext();
+// ====================================================================
+// RUTA CORREGIDA: Usa el path relativo /api en producción (Render)
+// ====================================================================
+const API_BASE_URL = import.meta.env.PROD 
+    ? '/api' 
+    : (import.meta.env.VITE_API_URL || 'http://localhost:5000/api');
 
-const API_URL = 'http://localhost:5000/api/auth';
-const USER_API_URL = 'http://localhost:5000/api/user';
+const API_URL = `${API_BASE_URL}/auth`;
+const USER_API_URL = `${API_BASE_URL}/user`;
+// ====================================================================
+
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

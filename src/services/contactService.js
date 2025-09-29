@@ -1,6 +1,14 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/contact';
+// ====================================================================
+// RUTA CORREGIDA: Usa el path relativo /api en producción (Render)
+// ====================================================================
+const API_BASE_URL = import.meta.env.PROD 
+    ? '/api' 
+    : (import.meta.env.VITE_API_URL || 'http://localhost:5000/api');
+
+const API_URL = `${API_BASE_URL}/contact`;
+// ====================================================================
 
 const api = axios.create({
     baseURL: API_URL,
@@ -16,6 +24,7 @@ api.interceptors.request.use((config) => {
 
 export const sendContactMessage = async (contactData) => {
     try {
+        // Usa API_URL con la ruta corregida
         const response = await axios.post(API_URL, contactData);
         return response.data;
     } catch (error) {
