@@ -2,16 +2,15 @@ import React, { useEffect, createContext, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// ====================================================================
-// RUTA CORREGIDA: Usa el path relativo /api en producción (Render)
-// ====================================================================
+// === LÓGICA DE RUTA PARA REPOSITORIOS SEPARADOS ===
+// En producción, usa VITE_RENDER_API_URL (la URL completa de tu Web Service)
 const API_BASE_URL = import.meta.env.PROD 
-    ? '/api' 
+    ? (import.meta.env.VITE_RENDER_API_URL || '/api') 
     : (import.meta.env.VITE_API_URL || 'http://localhost:5000/api');
 
 const API_URL = `${API_BASE_URL}/auth`;
 const USER_API_URL = `${API_BASE_URL}/user`;
-// ====================================================================
+// ================================================
 
 const AuthContext = createContext();
 
