@@ -1,0 +1,196 @@
+/**
+ * ============================================
+ * ARCHIVO: ActivityLog.css
+ * ============================================
+ * Estilos para la página de Registro de Actividad,
+ * incluyendo el diseño de línea de tiempo y los
+ * filtros de búsqueda.
+ */
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que los elementos se apilen */
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: var(--fondo-tarjetas);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--sombra-principal);
+}
+
+.filter-input,
+.filter-select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--borde-principal);
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    flex-grow: 1;
+    /* Ocupa el espacio disponible */
+    min-width: 150px;
+    /* Ancho mínimo para evitar que se aplasten */
+}
+
+.error-message {
+    color: var(--color-peligro);
+    font-weight: bold;
+}
+
+.no-logs-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--texto-desactivado);
+    background-color: var(--fondo-tarjetas);
+    border-radius: 8px;
+}
+
+/* Estilos de Línea de Tiempo Mejorados */
+.log-list {
+    position: relative;
+    padding: 1rem 0 1rem 20px;
+    /* Padding izquierdo reducido para móviles */
+}
+
+.log-list::before {
+    content: '';
+    position: absolute;
+    left: 41px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--borde-suave);
+    z-index: 0;
+}
+
+.log-timeline-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    /* Gap reducido */
+    padding-left: 21px;
+}
+
+.log-timeline-item+.log-timeline-item {
+    margin-top: 1.5rem;
+    /* Espacio entre tarjetas reducido */
+}
+
+.log-icon-wrapper {
+    position: absolute;
+    left: -39px;
+    top: 5px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f9;
+    border: 2px solid;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.log-icon-wrapper svg {
+    width: 20px;
+    height: 20px;
+}
+
+.log-item-card {
+    flex-grow: 1;
+    background-color: var(--fondo-tarjetas);
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.log-item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--sombra-principal);
+}
+
+.log-action-text {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    color: var(--texto-secundario);
+}
+
+.log-admin-name {
+    font-weight: 600;
+    color: var(--texto-principal);
+}
+
+.log-details {
+    font-size: 0.95rem;
+    color: var(--texto-secundario);
+    line-height: 1.6;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--borde-suave);
+}
+
+.log-details p {
+    margin: 0 0 8px 0;
+}
+
+.log-details ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 8px 0 0 0;
+}
+
+.log-details li {
+    padding: 2px 0;
+}
+
+.log-timestamp {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--texto-desactivado);
+    text-align: right;
+}
+
+/* Colores para el borde e icono de la tarjeta */
+.color-green {
+    border-color: var(--color-exito);
+    color: var(--color-exito);
+}
+
+.color-red {
+    border-color: var(--color-peligro);
+    color: var(--color-peligro);
+}
+
+.color-blue {
+    border-color: var(--color-info);
+    color: var(--color-info);
+}
+
+.color-grey {
+    border-color: var(--texto-desactivado);
+    color: var(--texto-desactivado);
+}
+
+
+/*
+ * ============================================
+ * MEDIA QUERIES (DISEÑO RESPONSIVO)
+ * ============================================
+*/
+
+/* Tablets y pantallas medianas */
+@media (min-width: 768px) {
+    .log-list {
+        padding-left: 60px;
+        /* Restaurar padding original */
+    }
+
+    .log-timeline-item {
+        gap: 1.25rem;
+        /* Restaurar gap original */
+    }
+}

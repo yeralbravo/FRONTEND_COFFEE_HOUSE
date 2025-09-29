@@ -1,0 +1,235 @@
+/**
+ * ARCHIVO: ClientHeader.css
+ */
+
+.client-header-container {
+    background-color: var(--fondo-tarjetas);
+    box-shadow: 0 2px 4px var(--sombra-principal);
+    border-bottom: 1px solid var(--borde-suave);
+    /* --- REGLAS AÑADIDAS --- */
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    /* Asegura que esté por encima del contenido */
+}
+
+.top-bar,
+.navigation-and-search-bar {
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primario);
+    font-family: 'Lora', serif;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--texto-principal);
+    cursor: pointer;
+    position: relative;
+    padding: 0.25rem;
+}
+
+.hamburger-btn {
+    font-size: 1.8rem;
+}
+
+.hamburger-btn.always-visible {
+    display: block !important;
+}
+
+.cart-icon-wrapper,
+.user-menu-wrapper {
+    position: relative;
+}
+
+.cart-item-count,
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: var(--color-primario);
+    color: var(--texto-blanco);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.navigation-and-search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    background-color: var(--color-navegacion);
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-top: 1px solid var(--borde-suave);
+}
+
+.main-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--texto-blanco);
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+.nav-link.active {
+    font-weight: bold;
+}
+
+.search-bar-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-bar {
+    position: relative;
+    width: 100%;
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--texto-desactivado);
+    font-size: 1.2rem;
+}
+
+.search-bar .search-input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 3.5rem;
+    border: 1px solid var(--borde-principal);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background-color: var(--fondo-tarjetas);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-bar .search-input:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(36, 101, 28, 0.15);
+}
+
+.header-profile-picture {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+@media (max-width: 1024px) {
+    .hamburger-btn {
+        display: block !important;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .navigation-and-search-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .search-bar-wrapper {
+        max-width: none;
+    }
+
+    .top-bar,
+    .navigation-and-search-bar {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        display: none;
+    }
+
+    .user-actions {
+        gap: 0.5rem;
+    }
+
+    .icon-btn {
+        font-size: 1.3rem;
+    }
+
+    .hamburger-btn {
+        font-size: 1.4rem;
+        padding: 0.1rem;
+    }
+
+    .header-left {
+        gap: 0.75rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hamburger-btn {
+        display: none !important;
+    }
+}

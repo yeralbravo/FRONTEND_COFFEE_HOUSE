@@ -1,0 +1,31 @@
+/**
+ * ============================================
+ * ARCHIVO: Layout.css
+ * ============================================
+ * Define una estructura de layout muy simple
+ * para páginas que contienen una barra lateral
+ * y un área de contenido principal.
+ */
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-layout .main-content {
+  flex-grow: 1;
+  background-color: var(--fondo-secundario);
+  padding: 2rem;
+}
+
+/*
+ * ============================================
+ * MEDIA QUERIES (DISEÑO RESPONSIVO)
+ * ============================================
+*/
+
+@media (max-width: 767px) {
+  .admin-layout .main-content {
+    padding: 1rem;
+  }
+}

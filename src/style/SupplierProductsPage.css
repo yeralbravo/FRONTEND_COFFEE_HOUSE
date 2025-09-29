@@ -1,0 +1,215 @@
+/**
+ * ============================================
+ * ARCHIVO: SupplierProductsPage.css
+ * ============================================
+ * Estilos para las páginas de gestión de productos
+ * e insumos del proveedor, incluyendo la tabla
+ * de ítems y la barra de búsqueda.
+ */
+
+.supplier-products-page {
+    padding: 2.5rem 3rem;
+}
+
+.supplier-products-page .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--borde-suave);
+}
+
+.supplier-products-page .page-title {
+    font-size: 2.5rem;
+    color: var(--texto-principal);
+    font-weight: 700;
+    margin: 0;
+}
+
+.supplier-products-page .btn-add-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--color-primario);
+    color: var(--texto-blanco);
+    border: none;
+    border-radius: 10px;
+    padding: 0.9rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.supplier-products-page .btn-add-product:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.product-list-container {
+    background-color: var(--fondo-tarjetas);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--sombra-principal);
+    overflow: hidden;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th {
+    background-color: var(--fondo-principal);
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.8rem;
+    color: var(--texto-desactivado);
+    text-transform: uppercase;
+}
+
+.product-table td {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--borde-suave);
+    vertical-align: middle;
+}
+
+.product-table tbody tr:hover {
+    background-color: #fcfcfc;
+}
+
+.product-image-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.stock-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-weight: 500;
+    color: var(--texto-blanco);
+    text-align: center;
+}
+
+.stock-high {
+    background-color: var(--color-exito);
+}
+
+.stock-low {
+    background-color: var(--color-advertencia);
+    color: var(--texto-principal);
+}
+
+.stock-out {
+    background-color: var(--color-peligro);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn.edit-btn {
+    color: var(--color-primario-hover);
+}
+
+.action-btn.delete-btn {
+    color: var(--color-peligro);
+}
+
+.action-btn:hover {
+    background-color: var(--fondo-desactivado);
+    transform: scale(1.1);
+}
+
+.search-bar-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--texto-desactivado);
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--borde-principal);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.no-results-cell {
+    text-align: center;
+    padding: 2rem;
+    color: var(--texto-desactivado);
+}
+
+/*
+ * ============================================
+ * MEDIA QUERIES (DISEÑO RESPONSIVO)
+ * ============================================
+*/
+@media (max-width: 767px) {
+    .supplier-products-page {
+        padding: 1rem;
+    }
+
+    .product-table thead {
+        display: none;
+    }
+
+    .product-table,
+    .product-table tbody,
+    .product-table tr,
+    .product-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .product-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--borde-suave);
+        border-radius: 8px;
+    }
+
+    .product-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        border-top: none;
+    }
+
+    .product-table td:not(:last-child) {
+        border-bottom: 1px solid var(--borde-suave);
+    }
+
+    .product-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-align: left;
+        color: var(--texto-principal);
+    }
+}
