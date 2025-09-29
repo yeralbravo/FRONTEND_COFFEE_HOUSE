@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-// === LÓGICA DE RUTA PARA REPOSITORIOS SEPARADOS ===
-const API_BASE_URL = import.meta.env.PROD 
-    ? (import.meta.env.VITE_RENDER_API_URL || '/api') 
-    : (import.meta.env.VITE_API_URL || 'http://localhost:5000/api');
-
-const API_URL = `${API_BASE_URL}/contact`;
+// === RUTA ADAPTADA: Usa VITE_REACT_APP_API_URL ===
+const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = `${API_BASE_URL}/api/contact`;
 // ================================================
 
 const api = axios.create({
@@ -22,6 +19,7 @@ api.interceptors.request.use((config) => {
 
 export const sendContactMessage = async (contactData) => {
     try {
+        // Usa API_URL con la ruta corregida
         const response = await axios.post(API_URL, contactData);
         return response.data;
     } catch (error) {

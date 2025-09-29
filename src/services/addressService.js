@@ -1,12 +1,9 @@
 import axios from 'axios';
 
-// 1. Lee la variable de entorno con un valor por defecto si no la encuentra
-const API_BASE_URL = import.meta.env.PROD 
-    ? '/api' 
-    : (import.meta.env.VITE_API_URL || 'http://localhost:5000/api');
-
-// 2. Construye la URL específica para este servicio
-const API_URL = `${API_BASE_URL}/addresses`;
+// === RUTA UNIFICADA ===
+const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = `${API_BASE_URL}/api/addresses`;
+// ======================
 
 const api = axios.create({
     baseURL: API_URL,
