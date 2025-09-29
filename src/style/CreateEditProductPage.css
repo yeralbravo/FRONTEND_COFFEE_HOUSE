@@ -1,0 +1,52 @@
+/**
+ * ============================================
+ * ARCHIVO: CreateEditProductPage.css
+ * ============================================
+ * Estilos para la página de creación y edición
+ * de productos específicos (similar a CreateEditItemPage).
+ */
+
+.add-edit-product-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.add-edit-product-page h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.product-form-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Reutiliza los estilos de .form-section y otros de CreateEditItemPage.css */
+
+/*
+ * ============================================
+ * MEDIA QUERIES (DISEÑO RESPONSIVO)
+ * ============================================
+*/
+
+/* Layout para pantallas grandes */
+@media (min-width: 992px) {
+    .product-form-layout {
+        grid-template-columns: 400px 1fr;
+        align-items: flex-start;
+    }
+}
+
+/* Móviles */
+@media (max-width: 767px) {
+    .add-edit-product-page {
+        padding: 1rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        /* Apila los campos del formulario */
+    }
+}

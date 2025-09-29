@@ -1,0 +1,85 @@
+/**
+ * ARCHIVO: AdminStatsPages.css
+ *
+ * MODIFICACIÓN FINAL:
+ * - Se añadió `overflow-x: hidden;` a `.chart-card` para forzar a las
+ * gráficas a ser responsivas y no desbordar su contenedor.
+ */
+.admin-stats-page {
+    width: 100%;
+}
+
+.admin-stats-page .admin-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.admin-stats-page .admin-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.charts-container-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.charts-container-stats .chart-card {
+    background-color: var(--fondo-tarjetas);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--sombra-principal);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* <-- REGLA AÑADIDA */
+}
+
+.charts-container-stats .chart-card h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--texto-secundario);
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 350px;
+    width: 100%;
+}
+
+.pie-chart-container {
+    position: relative;
+    max-width: 300px;
+    margin: 0 auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .admin-stats-page .admin-header {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .charts-container-stats.two-columns {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: stretch;
+    }
+}

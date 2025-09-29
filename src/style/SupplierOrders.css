@@ -1,0 +1,258 @@
+/**
+ * ============================================
+ * ARCHIVO: SupplierOrders.css
+ * ============================================
+ * Estilos para la página de gestión de pedidos
+ * del proveedor, incluyendo la tabla de pedidos
+ * y la barra de filtros.
+ */
+
+.so-page-container {
+    padding: 2.5rem;
+    background-color: var(--fondo-principal);
+}
+
+.so-header {
+    margin-bottom: 2rem;
+}
+
+.so-header h1 {
+    color: var(--texto-principal);
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'Lora', serif;
+}
+
+.so-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    /* Para apilar en móvil */
+    border: 1px solid var(--borde-suave);
+    border-radius: 0.5rem;
+    background-color: var(--fondo-tarjetas);
+    box-shadow: 0 1px 2px 0 var(--sombra-principal);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.so-filter-select,
+.so-filter-date-wrapper {
+    flex: 1;
+}
+
+.so-filter-select,
+.so-filter-date-input {
+    border: none;
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    color: var(--texto-secundario);
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.so-filter-select:focus,
+.so-filter-date-input:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--color-primario);
+    z-index: 1;
+}
+
+.so-filter-select {
+    border-right: 1px solid var(--borde-suave);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.2em;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+.so-filter-date-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.so-calendar-icon {
+    position: absolute;
+    right: 0.75rem;
+    color: var(--texto-desactivado);
+    pointer-events: none;
+}
+
+.so-filter-date-input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.so-table-container {
+    background-color: var(--fondo-tarjetas);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--sombra-principal);
+    overflow-x: auto;
+}
+
+.so-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.so-orders-table th,
+.so-orders-table td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid var(--borde-suave);
+    white-space: nowrap;
+}
+
+.so-orders-table th {
+    background-color: var(--fondo-principal);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--texto-desactivado);
+}
+
+.so-orders-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.so-orders-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.so-orders-table th:nth-child(2),
+.so-orders-table td:nth-child(2) {
+    white-space: normal;
+}
+
+.so-orders-table td {
+    vertical-align: middle;
+    color: var(--texto-principal);
+    font-size: 0.95rem;
+}
+
+.so-orders-table td:first-child {
+    font-weight: 500;
+    color: var(--color-primario);
+}
+
+.so-status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--texto-blanco);
+}
+
+.so-status-pendiente {
+    background-color: var(--color-advertencia);
+    color: var(--texto-principal);
+}
+
+.so-status-enviado {
+    background-color: var(--color-info);
+}
+
+.so-status-entregado {
+    background-color: var(--color-exito);
+}
+
+.so-status-cancelado {
+    background-color: var(--color-peligro);
+}
+
+.so-action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.so-action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.so-action-btn:hover {
+    background-color: var(--fondo-desactivado);
+}
+
+.so-action-btn[title="Editar Estado"] {
+    color: var(--color-primario-hover);
+}
+
+.so-action-btn[title="Ver Detalles"] {
+    color: var(--color-info);
+}
+
+/*
+ * ============================================
+ * MEDIA QUERIES (DISEÑO RESPONSIVO)
+ * ============================================
+*/
+@media (max-width: 767px) {
+    .so-page-container {
+        padding: 1rem;
+    }
+
+    .so-orders-table thead {
+        display: none;
+    }
+
+    .so-orders-table,
+    .so-orders-table tbody,
+    .so-orders-table tr,
+    .so-orders-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .so-orders-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--borde-suave);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .so-orders-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--borde-suave);
+        border-top: none;
+        white-space: normal;
+    }
+
+    .so-orders-table tr td:last-child {
+        border-bottom: none;
+    }
+
+    .so-orders-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-align: left;
+        margin-right: 1rem;
+        color: var(--texto-principal);
+    }
+
+    .so-action-buttons {
+        justify-content: flex-end;
+    }
+}

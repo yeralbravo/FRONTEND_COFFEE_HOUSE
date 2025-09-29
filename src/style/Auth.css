@@ -1,0 +1,279 @@
+/**
+ * ============================================
+ * ARCHIVO: Auth.css
+ * ============================================
+ * Estilos para las páginas de autenticación
+ * (Login, Registro, Olvidé Contraseña).
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--fondo-principal);
+}
+
+.auth-main.single-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-description {
+  font-size: 0.9rem;
+  color: var(--texto-desactivado);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.general-success {
+  background-color: #d4edda;
+  /* Mantener por ser específico */
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 0.8rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* --- Estructura Principal --- */
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.auth-nav {
+  width: 100%;
+  padding: 15px 40px;
+  background: var(--fondo-tarjetas);
+  box-shadow: 0 4px 12px var(--sombra-principal);
+  z-index: 10;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-img {
+  width: 40px;
+}
+
+.logo-section h2 {
+  font-size: 24px;
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+.auth-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  gap: 40px;
+}
+
+.auth-image-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.auth-image-panel img {
+  max-width: 350px;
+  height: auto;
+}
+
+.auth-form-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-box {
+  background: var(--fondo-tarjetas);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-box h2 {
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.auth-footer {
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--texto-desactivado);
+  border-top: 1px solid var(--borde-principal);
+}
+
+.auth-footer a {
+  color: var(--texto-desactivado);
+  text-decoration: none;
+}
+
+/* --- Estilos de Formulario --- */
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px 12px 50px;
+  border: 1px solid var(--borde-principal);
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: var(--fondo-principal);
+  transition: all 0.2s ease-in-out;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  background-color: var(--fondo-tarjetas);
+  box-shadow: 0 0 0 3px rgba(36, 101, 28, 0.15);
+}
+
+.input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--texto-desactivado);
+  pointer-events: none;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--texto-desactivado);
+}
+
+.auth-box button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: var(--color-primario);
+  color: var(--texto-blanco);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.auth-box button[type="submit"]:hover {
+  background-color: var(--color-primario-hover);
+}
+
+.auth-box .link {
+  color: var(--color-primario);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-box .link:hover {
+  text-decoration: underline;
+}
+
+.auth-box p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--texto-desactivado);
+}
+
+.auth-box .forgot-password {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.auth-box hr {
+  border: 0;
+  height: 1px;
+  background: var(--borde-principal);
+  margin: 20px 0;
+}
+
+.auth-box .error-text {
+  color: var(--color-peligro);
+  font-size: 0.875rem;
+  text-align: left;
+  width: 100%;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+.general-error {
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #FFCDD2;
+  /* Mantener por ser específico */
+  border: 1px solid var(--color-peligro);
+  border-radius: 4px;
+}
+
+
+/*
+ * ============================================
+ * MEDIA QUERIES (DISEÑO RESPONSIVO)
+ * ============================================
+*/
+@media (max-width: 992px) {
+  .auth-image-panel {
+    display: none;
+  }
+
+  .auth-form-panel {
+    justify-content: center;
+  }
+
+  .auth-box {
+    padding: 25px;
+    /* Menos padding en pantallas más pequeñas */
+  }
+}

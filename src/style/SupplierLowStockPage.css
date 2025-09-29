@@ -1,0 +1,160 @@
+/**
+ * ============================================
+ * ARCHIVO: SupplierLowStockPage.css
+ * ============================================
+ * Estilos para la página que muestra a los
+ * proveedores una lista de sus productos con
+ * bajo inventario (stock).
+ */
+
+.supplier-low-stock-page {
+    padding: 2rem;
+    background-color: var(--fondo-desactivado);
+    min-height: 100%;
+}
+
+.supplier-low-stock-page .admin-header {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--borde-principal);
+    margin-bottom: 2rem;
+}
+
+.supplier-low-stock-page .admin-header h1 {
+    font-size: 2rem;
+    color: var(--texto-principal);
+    margin: 0;
+}
+
+.supplier-low-stock-page .admin-header p {
+    font-size: 1rem;
+    color: var(--texto-desactivado);
+    margin-top: 0.5rem;
+}
+
+.list-container {
+    background-color: var(--fondo-tarjetas);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--sombra-principal);
+    overflow: hidden;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th {
+    background-color: var(--fondo-principal);
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.8rem;
+    color: var(--texto-desactivado);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.user-table td {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--borde-suave);
+    vertical-align: middle;
+}
+
+.user-table tbody tr:hover {
+    background-color: #fcfcfc;
+}
+
+.product-image-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--borde-suave);
+}
+
+.stock-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+}
+
+.stock-low {
+    background-color: #ffedcc;
+    color: #cc8400;
+}
+
+.stock-out {
+    background-color: #fce7e7;
+    color: var(--color-peligro);
+}
+
+.stock-input {
+    width: 60px;
+    padding: 5px 8px;
+    border: 1px solid var(--borde-principal);
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.stock-input:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 2px rgba(36, 101, 28, 0.2);
+}
+
+/*
+ * ============================================
+ * MEDIA QUERIES (DISEÑO RESPONSIVO)
+ * ============================================
+*/
+@media (max-width: 767px) {
+    .supplier-low-stock-page {
+        padding: 1rem;
+    }
+
+    .user-table thead {
+        /* Ocultamos los encabezados de la tabla en móvil */
+        display: none;
+    }
+
+    .user-table,
+    .user-table tbody,
+    .user-table tr,
+    .user-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .user-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--borde-suave);
+        border-radius: 8px;
+    }
+
+    .user-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 0.75rem 1rem;
+        border-top: none;
+    }
+
+    .user-table td:not(:last-child) {
+        border-bottom: 1px solid var(--borde-suave);
+    }
+
+    /* Usamos el atributo data-label que añadiremos en el JSX */
+    .user-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-align: left;
+        margin-right: 1rem;
+        color: var(--texto-principal);
+    }
+}

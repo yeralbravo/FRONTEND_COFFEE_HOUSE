@@ -1,0 +1,166 @@
+/**
+ * ARCHIVO: Modal.css
+ */
+
+/* --- Animaciones --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Contenedor Principal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+.modal-content {
+    background: var(--fondo-tarjetas);
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px var(--sombra-principal), 0 4px 6px -4px var(--sombra-principal);
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    animation: scaleUp 0.2s ease-out forwards;
+}
+
+/* --- Encabezado y Título --- */
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--texto-principal);
+    font-family: 'Lora', serif;
+    text-align: center;
+}
+
+/* --- Grupo de Formulario --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--texto-secundario);
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--borde-principal);
+    border-radius: 8px;
+    background-color: var(--fondo-principal);
+    font-size: 1rem;
+    color: var(--texto-principal);
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(36, 101, 28, 0.15);
+    background-color: var(--fondo-tarjetas);
+}
+
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    cursor: pointer;
+}
+
+
+/* --- Botones de Acción --- */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--borde-suave);
+}
+
+/* --- SELECTORES MÁS ESPECÍFICOS --- */
+.modal-actions .btn-cancel,
+.modal-actions .btn-save {
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.modal-actions .btn-cancel {
+    background-color: var(--fondo-tarjetas);
+    color: var(--texto-secundario);
+    border: 1px solid var(--borde-principal);
+}
+
+.modal-actions .btn-cancel:hover {
+    background-color: var(--fondo-desactivado);
+    border-color: var(--borde-principal);
+    color: var(--texto-principal);
+}
+
+.modal-actions .btn-save {
+    background-color: var(--color-primario);
+    color: var(--texto-blanco);
+    border: 1px solid var(--color-primario);
+}
+
+.modal-actions .btn-save:hover {
+    background-color: var(--color-primario-hover);
+    border-color: var(--color-primario-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(36, 101, 28, 0.2);
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-content h2 {
+        font-size: 1.25rem;
+    }
+}

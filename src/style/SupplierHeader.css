@@ -1,0 +1,48 @@
+/**
+ * ============================================
+ * ARCHIVO: SupplierHeader.css
+ * ============================================
+ * Estilos para la barra de navegación superior
+ * del panel de proveedores.
+ */
+
+.supplier-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--fondo-tarjetas);
+    border-bottom: 1px solid var(--borde-suave);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: var(--texto-principal);
+}
+
+.header-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--texto-desactivado);
+}

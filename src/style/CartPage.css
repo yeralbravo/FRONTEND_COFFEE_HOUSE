@@ -1,0 +1,217 @@
+/**
+ * ============================================
+ * ARCHIVO: CartPage.css
+ * ============================================
+ * Estilos para la página del carrito de compras,
+ * incluyendo la lista de productos, el resumen
+ * de la orden y la disposición general.
+ */
+
+.cart-main-content {
+    background-color: var(--fondo-secundario);
+    padding: 2rem 5%;
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: flex-start;
+    /* Clave para que el sticky funcione bien */
+}
+
+.cart-items-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cart-group {
+    background-color: var(--fondo-tarjetas);
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.cart-group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--borde-suave);
+    margin-bottom: 1rem;
+}
+
+.cart-group-header label {
+    font-weight: bold;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.cart-item:not(:last-child) {
+    border-bottom: 1px solid var(--borde-suave);
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+}
+
+.cart-item-details .item-name {
+    font-weight: 600;
+    margin: 0;
+}
+
+.cart-item-details .item-desc {
+    font-size: 0.9rem;
+    color: var(--texto-desactivado);
+    margin: 0.25rem 0;
+}
+
+.cart-item-details .item-desc a {
+    color: var(--texto-enlace);
+    text-decoration: none;
+}
+
+.cart-item-details .item-remove-btn {
+    background: none;
+    border: none;
+    color: var(--color-peligro);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--borde-principal);
+    border-radius: 6px;
+}
+
+.cart-item-quantity button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+}
+
+.cart-item-quantity span {
+    padding: 0 0.5rem;
+    font-weight: 500;
+}
+
+.cart-item-price {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* --- REGLA MODIFICADA --- */
+.order-summary-section .summary-card {
+    background-color: var(--fondo-tarjetas);
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: sticky;
+    top: 150px;
+    /* Distancia desde arriba (ajustar según la altura de tu navbar) */
+}
+
+.summary-card h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.summary-row,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.summary-total {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--borde-suave);
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: var(--color-primario);
+    color: var(--texto-blanco);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.cart-item.disabled {
+    opacity: 0.5;
+    background-color: #f9f9f9;
+    pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .order-summary-section .summary-card {
+        position: static;
+        /* En móvil, el resumen ya no es fijo */
+        top: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .cart-main-content {
+        padding: 1rem 3%;
+    }
+
+    .cart-item {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 0.5rem 1rem;
+    }
+
+    .cart-item-image {
+        grid-row: 1 / 4;
+    }
+
+    .cart-item-details {
+        grid-column: 2 / 3;
+    }
+
+    .cart-item-quantity {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        justify-self: flex-start;
+    }
+
+    .cart-item-price {
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+        text-align: left;
+        margin-top: 0.5rem;
+    }
+}
