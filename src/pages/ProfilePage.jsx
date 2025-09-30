@@ -202,9 +202,9 @@ const ProfilePage = () => {
             });
     };
 
-    const profilePicture = user?.profile_picture_url
-        ? `${API_BASE_URL}/${user.profile_picture_url}`
-        : `https://ui-avatars.com/api/?name=${user?.nombre}+${user?.apellido}&background=24651C&color=fff&size=128`;
+    const profilePicture = user?.profile_picture_url 
+    ? user.profile_picture_url
+    : `https://ui-avatars.com/api/?name=${user?.nombre}+${user?.apellido}&background=24651C&color=fff&size=128`;
 
     return (
         <main className="profile-page-main">
