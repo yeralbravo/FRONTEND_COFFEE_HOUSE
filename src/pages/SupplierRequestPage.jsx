@@ -1,9 +1,8 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAlerts } from '../hooks/useAlerts';
-import { validateField } from '../services/supplierRequestService';
-import axios from 'axios';
+import { api, validateField } from '../services/supplierRequestService'; // ✅ usamos api centralizada
 import '../style/SupplierRequestPage.css';
 import logo from '../assets/logo.png';
 
@@ -28,12 +27,12 @@ const SupplierRequestPage = () => {
     // --- LÓGICA DE VALIDACIÓN MEJORADA ---
     const validateForm = async () => {
         const errors = {};
-        
+
         // 1. Validaciones de campos vacíos
         if (!formData.nit) errors.nit = "El NIT es obligatorio.";
         if (!formData.email) errors.email = "El correo es obligatorio.";
         if (!formData.phone) errors.phone = "El teléfono es obligatorio.";
-        
+
         if (Object.keys(errors).length > 0) {
             setValidationErrors(errors);
             return false;
@@ -69,17 +68,18 @@ const SupplierRequestPage = () => {
         setLoading(true);
 
         const isValid = await validateForm();
-        
+
         if (isValid) {
             try {
-                const response = await axios.post('http://localhost:5000/api/supplier-requests', formData);
+                // ✅ Aquí usamos api centralizada
+                const response = await api.post('/', formData);
                 showSuccessAlert(response.data.message);
                 navigate('/');
             } catch (error) {
                 showErrorAlert(error.response?.data?.error || 'Ocurrió un error al enviar la solicitud.');
             }
         }
-        
+
         setLoading(false);
     };
 
@@ -122,7 +122,7 @@ const SupplierRequestPage = () => {
                                 {validationErrors.phone && <p className="validation-error-text">{validationErrors.phone}</p>}
                             </div>
                         </fieldset>
-                        
+
                         <fieldset className="form-fieldset">
                             <legend className="fieldset-legend">Información Adicional</legend>
                             <input type="text" name="product_types" placeholder="¿Qué tipo de productos ofreces? *" value={formData.product_types} onChange={handleChange} required />
