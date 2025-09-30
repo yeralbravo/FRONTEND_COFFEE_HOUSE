@@ -11,26 +11,26 @@ const SupplierDashboard = () => {
     const [stats, setStats] = useState({
         totalProducts: 0,
         lowStock: 0,
-        totalSales: 'N/A', // Placeholder - requeriría lógica de pedidos
-        newOrders: 'N/A'   // Placeholder - requeriría lógica de pedidos
+        totalSales: 'N/A',
+        newOrders: 'N/A'
     });
     const [recentProducts, setRecentProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // ✅ Variable de entorno
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
                 const response = await productService.getSupplierProducts();
                 const products = response.data;
-                
-                // Calculamos estadísticas basadas en los productos
+
                 const totalProducts = products.length;
                 const lowStock = products.filter(p => p.stock > 0 && p.stock < 10).length;
                 setStats(prev => ({ ...prev, totalProducts, lowStock }));
-                
-                // Tomamos los 5 productos más recientes (el backend los ordena por fecha de creación)
-                setRecentProducts(products.slice(0, 5));
 
+                setRecentProducts(products.slice(0, 5));
             } catch (error) {
                 console.error("Error al cargar datos del dashboard:", error);
             } finally {
@@ -40,8 +40,6 @@ const SupplierDashboard = () => {
 
         fetchDashboardData();
     }, []);
-    
-    const API_BASE_URL = 'http://localhost:5000';
 
     if (loading) {
         return (
@@ -108,15 +106,23 @@ const SupplierDashboard = () => {
                         <h2 className="section-title">Productos Recientes</h2>
                         {recentProducts.length > 0 ? (
                             <div className="recent-products-list">
-                                {recentProducts.map(product => (
-                                    <div key={product.id} className="recent-product-item">
-                                        <img src={product.images.length > 0 ? `${API_BASE_URL}/${product.images[0]}` : 'https://via.placeholder.com/50'} alt={product.nombre} />
-                                        <div className="product-details">
-                                            <p>{product.nombre}</p>
-                                            <span>Stock: {product.stock}</span>
+                                {recentProducts.map(product => {
+                                    const imageUrl = product.images.length > 0
+                                        ? (product.images[0].startsWith('http')
+                                            ? product.images[0]
+                                            : `${API_BASE_URL}/${product.images[0]}`)
+                                        : 'https://via.placeholder.com/50';
+
+                                    return (
+                                        <div key={product.id} className="recent-product-item">
+                                            <img src={imageUrl} alt={product.nombre} />
+                                            <div className="product-details">
+                                                <p>{product.nombre}</p>
+                                                <span>Stock: {product.stock}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         ) : (
                             <p className="no-products-message">Aún no has añadido ningún producto.</p>

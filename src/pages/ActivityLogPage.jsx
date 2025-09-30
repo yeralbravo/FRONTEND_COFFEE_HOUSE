@@ -10,6 +10,9 @@ const ActivityLogPage = () => {
     const [filters, setFilters] = useState({ adminName: '', action: '', date: '' });
     const [debouncedFilters, setDebouncedFilters] = useState(filters);
 
+    // ✅ Usar variable de entorno en lugar de localhost
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebouncedFilters(filters);
@@ -28,7 +31,7 @@ const ActivityLogPage = () => {
                 if (debouncedFilters.action) activeFilters.action = debouncedFilters.action;
                 if (debouncedFilters.date) activeFilters.date = debouncedFilters.date;
 
-                const res = await axios.get('http://localhost:5000/api/user/admin/activity-log', {
+                const res = await axios.get(`${API_BASE_URL}/api/user/admin/activity-log`, {
                     headers: { Authorization: `Bearer ${token}` },
                     params: activeFilters 
                 });
@@ -40,7 +43,7 @@ const ActivityLogPage = () => {
             }
         };
         fetchLogs();
-    }, [debouncedFilters]);
+    }, [debouncedFilters, API_BASE_URL]);
 
     const handleFilterChange = (e) => {
         const { name, value } = e.target;

@@ -14,7 +14,9 @@ const AdminHeader = ({ onMenuClick }) => {
     const [isNotificationsOpen, setNotificationsOpen] = useState(false);
     const [notifications, setNotifications] = useState([]);
     const [unreadCount, setUnreadCount] = useState(0);
-    const API_BASE_URL = 'http://localhost:5000';
+
+    // ✅ Usar variable de entorno en vez de localhost
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const fetchNotifications = async () => {
         if (user) {
@@ -24,7 +26,6 @@ const AdminHeader = ({ onMenuClick }) => {
                     setNotifications(response.data);
                     setUnreadCount(response.data.filter(n => !n.is_read).length);
                 }
-            // eslint-disable-next-line no-unused-vars
             } catch (error) {
                 console.error("Error al obtener notificaciones");
             }
@@ -79,7 +80,15 @@ const AdminHeader = ({ onMenuClick }) => {
                 <div className="user-menu-wrapper-admin">
                     <button className="icon-btn-admin" onClick={() => setMenuOpen(!isMenuOpen)}>
                         {user?.profile_picture_url ? (
-                            <img src={`${API_BASE_URL}/${user.profile_picture_url}`} alt="Perfil" className="header-profile-picture" />
+                            <img 
+                                src={
+                                    user.profile_picture_url.startsWith('http')
+                                        ? user.profile_picture_url
+                                        : `${API_BASE_URL}/${user.profile_picture_url}`
+                                }
+                                alt="Perfil" 
+                                className="header-profile-picture" 
+                            />
                         ) : (
                             <FiUser />
                         )}

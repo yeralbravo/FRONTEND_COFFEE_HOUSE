@@ -12,10 +12,14 @@ const AdminSidebar = ({ isOpen, onClose }) => {
     const [isUsersMenuOpen, setUsersMenuOpen] = useState(false);    
     const [isGestionMenuOpen, setGestionMenuOpen] = useState(false);  
 
-    const API_BASE_URL = 'http://localhost:5000';
+    // ✅ Usar variable de entorno en vez de localhost
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-    const profilePicture = user?.profile_picture_url 
-        ? `${API_BASE_URL}/${user.profile_picture_url}`
+    // ✅ Evitar duplicación si la URL ya es absoluta
+    const profilePicture = user?.profile_picture_url
+        ? (user.profile_picture_url.startsWith('http')
+            ? user.profile_picture_url
+            : `${API_BASE_URL}/${user.profile_picture_url}`)
         : `https://ui-avatars.com/api/?name=${user?.nombre}+${user?.apellido}&background=24651C&color=fff`;
 
     return (
