@@ -98,7 +98,8 @@ const Login = () => {
               <hr />
               <p>
                 ¿No tienes una cuenta?{' '}
-                <a className="link" onClick={handleRegister} href="#">Regístrate aquí</a>
+                
+                <Link to="/register" className="link">Regístrate aquí</Link>
               </p>
             </form>
           </div>
