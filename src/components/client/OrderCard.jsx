@@ -14,8 +14,11 @@ const OrderCard = ({ order }) => {
     
     const firstItem = order.items && order.items[0] ? order.items[0] : null;
 
-    const imageUrl = firstItem?.image 
-        ? `${API_BASE_URL}/${firstItem.image}` 
+    // ✅ Evitamos duplicar la URL si ya viene absoluta
+    const imageUrl = firstItem?.image
+        ? (firstItem.image.startsWith('http')
+            ? firstItem.image
+            : `${API_BASE_URL}/${firstItem.image}`)
         : 'https://placehold.co/100x100/EFEFEF/8B8B8B?text=Sin+Imagen';
 
     return (
