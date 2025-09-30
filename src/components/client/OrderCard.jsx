@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import '../../style/OrderCard.css';
 
 const statusInfo = {
-    Pendiente: { color: '#f5a623', text: 'El proveedor esta empacando tú pedido' },
-    Enviado: { color: '#4a90e2', text: 'La transportadora tiene tú pedido' },
+    Pendiente: { color: '#f5a623', text: 'El proveedor está empacando tu pedido' },
+    Enviado: { color: '#4a90e2', text: 'La transportadora tiene tu pedido' },
     Entregado: { color: '#24651C', text: 'Llegó el ' }
 };
 
 const OrderCard = ({ order }) => {
-    const API_BASE_URL = 'http://localhost:5000';
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const status = statusInfo[order.status] || { color: '#8B8B8B', text: 'Estado desconocido' };
     
     const firstItem = order.items && order.items[0] ? order.items[0] : null;

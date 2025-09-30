@@ -48,7 +48,12 @@ const MyOrdersPage = () => {
             </div>
             
             <div className="filter-container">
-                <select name="status" value={filters.status} onChange={handleFilterChange} className="filter-select">
+                <select 
+                    name="status" 
+                    value={filters.status} 
+                    onChange={handleFilterChange} 
+                    className="filter-select"
+                >
                     <option value="">Todos los estados</option>
                     <option value="Pendiente">Pendiente</option>
                     <option value="Enviado">Enviado</option>
@@ -63,10 +68,20 @@ const MyOrdersPage = () => {
                     className="filter-input" 
                     aria-label="Fecha de inicio"
                 />
+                <input 
+                    type="date" 
+                    name="endDate" 
+                    value={filters.endDate} 
+                    onChange={handleFilterChange} 
+                    className="filter-input" 
+                    aria-label="Fecha de fin"
+                />
             </div>
 
             <div className="orders-list">
-                {loading ? <p>Cargando tus pedidos...</p> : Object.keys(groupedOrders).length === 0 ? (
+                {loading ? (
+                    <p>Cargando tus pedidos...</p>
+                ) : Object.keys(groupedOrders).length === 0 ? (
                     <p>No se encontraron pedidos con los filtros aplicados.</p>
                 ) : (
                     Object.entries(groupedOrders).map(([date, ordersOnDate]) => (
