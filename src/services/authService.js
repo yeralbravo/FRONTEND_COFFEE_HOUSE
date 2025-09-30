@@ -67,6 +67,7 @@ export const checkAuth = async () => {
             headers: { Authorization: `Bearer ${token}` }
         });
         return { isAuthenticated: true, user: response.data.user };
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
         // Token expirado o inválido, limpiar token
         localStorage.removeItem('token');
