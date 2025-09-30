@@ -8,78 +8,79 @@ import logo from '../assets/logo.png';
 import { FiCoffee, FiPackage, FiTruck, FiCreditCard, FiMenu, FiX } from 'react-icons/fi';
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 
+// ✅ Configuración de la API usando variables de entorno
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const LandingPage = () => {
-    const navigate = useNavigate();
-    const { showSuccessAlert, showErrorAlert } = useAlerts();
-    const [contactForm, setContactForm] = useState({ name: '', phone: '', email: '', message: '', privacy: false });
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [isMenuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { showSuccessAlert, showErrorAlert } = useAlerts();
+  const [contactForm, setContactForm] = useState({ name: '', phone: '', email: '', message: '', privacy: false });
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/api/catalog/landing-products');
-                if (response.data.success) {
-                    setProducts(response.data.data);
-                }
-            } catch (error) {
-                console.error("Error al cargar productos para la landing page:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProducts();
-    }, []);
-
-    const handleRedirectToRegister = () => navigate('/register');
-
-    const handleFormChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setContactForm({ ...contactForm, [name]: type === 'checkbox' ? checked : value });
-    };
-
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        if (!contactForm.privacy) {
-            showErrorAlert('Debes aceptar las políticas de privacidad.');
-            return;
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/api/catalog/landing-products`);
+        if (response.data.success) {
+          setProducts(response.data.data);
         }
-        try {
-            const { privacy, ...formData } = contactForm;
-            const response = await sendContactMessage(formData);
-            showSuccessAlert(response.message);
-            setContactForm({ name: '', phone: '', email: '', message: '', privacy: false });
-        } catch (error) {
-            showErrorAlert(error.message);
-        }
+      } catch (error) {
+        console.error("Error al cargar productos para la landing page:", error);
+      } finally {
+        setLoading(false);
+      }
     };
+    fetchProducts();
+  }, []);
 
-    const scrollToSection = (sectionId) => {
-        setMenuOpen(false);
-        setTimeout(() => {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                // Si la sección es 'home', hacemos scroll al inicio de la página
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }, 100);
-    };
+  const handleRedirectToRegister = () => navigate('/register');
+
+  const handleFormChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setContactForm({ ...contactForm, [name]: type === 'checkbox' ? checked : value });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (!contactForm.privacy) {
+      showErrorAlert('Debes aceptar las políticas de privacidad.');
+      return;
+    }
+    try {
+      const { privacy, ...formData } = contactForm;
+      const response = await sendContactMessage(formData);
+      showSuccessAlert(response.message);
+      setContactForm({ name: '', phone: '', email: '', message: '', privacy: false });
+    } catch (error) {
+      showErrorAlert(error.message);
+    }
+  };
+
+  const scrollToSection = (sectionId) => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   return (
     <div className="main-container">
       <header className="top-header">
         <button className="hamburger-btn-landing" onClick={() => setMenuOpen(true)}>
-            <FiMenu />
+          <FiMenu />
         </button>
         <div className="brand-logo">
           <img src={logo} alt="Coffee House Logo" className="logo-image" />
           <h1 className="brand-name">COFFEE HOUSE</h1>
         </div>
         <nav className="navigation-menu">
-          {/* --- ENLACE AÑADIDO --- */}
           <a onClick={() => scrollToSection('home')}>Inicio</a>
           <a onClick={() => scrollToSection('about-us')}>Nosotros</a>
           <a onClick={() => scrollToSection('our-products')}>Productos</a>
@@ -91,18 +92,17 @@ const LandingPage = () => {
       <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}></div>
       <aside className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-header">
-            <h3>Menú</h3>
-            <button className="mobile-menu-close" onClick={() => setMenuOpen(false)}>
-                <FiX />
-            </button>
+          <h3>Menú</h3>
+          <button className="mobile-menu-close" onClick={() => setMenuOpen(false)}>
+            <FiX />
+          </button>
         </div>
         <nav className="mobile-nav-links">
-            {/* --- ENLACE AÑADIDO --- */}
-            <a onClick={() => scrollToSection('home')}>Inicio</a>
-            <a onClick={() => scrollToSection('about-us')}>Nosotros</a>
-            <a onClick={() => scrollToSection('our-products')}>Productos</a>
-            <a onClick={() => scrollToSection('suppliers')}>Proveedores</a>
-            <a onClick={() => scrollToSection('contact-info')}>Contacto</a>
+          <a onClick={() => scrollToSection('home')}>Inicio</a>
+          <a onClick={() => scrollToSection('about-us')}>Nosotros</a>
+          <a onClick={() => scrollToSection('our-products')}>Productos</a>
+          <a onClick={() => scrollToSection('suppliers')}>Proveedores</a>
+          <a onClick={() => scrollToSection('contact-info')}>Contacto</a>
         </nav>
       </aside>
 
@@ -149,7 +149,7 @@ const LandingPage = () => {
             products.map(product => (
               <div className="product-item" key={`${product.item_type}-${product.id}`}>
                 <img 
-                  src={product.images.length > 0 ? `http://localhost:5000/${product.images[0]}` : 'https://placehold.co/200x200/EFEFEF/8B8B8B?text=Sin+Imagen'} 
+                  src={product.images.length > 0 ? product.images[0] : 'https://placehold.co/200x200/EFEFEF/8B8B8B?text=Sin+Imagen'} 
                   alt={product.nombre} 
                   className="product-pic" 
                 />
@@ -175,7 +175,9 @@ const LandingPage = () => {
       <section className="contact-section" id="contact-info">
         <form className="supplier-form" onSubmit={handleFormSubmit}>
           <h3 className="contact-header">Contáctanos</h3>
-          <p className="contact-details">Su opinión es muy importante para nosotros, por favor llene los siguientes datos y nos pondremos en contacto a la brevedad</p>
+          <p className="contact-details">
+            Su opinión es muy importante para nosotros, por favor llene los siguientes datos y nos pondremos en contacto a la brevedad
+          </p>
           
           <div className="form-row">
             <input type="text" name="name" className="form-input" placeholder="Nombre" value={contactForm.name} onChange={handleFormChange} required />
@@ -198,30 +200,30 @@ const LandingPage = () => {
 
       <footer className="site-footer">
         <div className="footer-content">
-            <div className="footer-column">
-                <h3 className="footer-brand">COFFEE HOUSE</h3>
-                <nav className="footer-nav">
-                    <a onClick={() => scrollToSection('home')}>Inicio</a>
-                    <a onClick={() => scrollToSection('about-us')}>Nosotros</a>
-                    <a onClick={() => scrollToSection('our-products')}>Productos</a>
-                    <a onClick={() => scrollToSection('suppliers')}>Proveedores</a>
-                    <a onClick={() => scrollToSection('contact-info')}>Contacto</a>
-                </nav>
+          <div className="footer-column">
+            <h3 className="footer-brand">COFFEE HOUSE</h3>
+            <nav className="footer-nav">
+              <a onClick={() => scrollToSection('home')}>Inicio</a>
+              <a onClick={() => scrollToSection('about-us')}>Nosotros</a>
+              <a onClick={() => scrollToSection('our-products')}>Productos</a>
+              <a onClick={() => scrollToSection('suppliers')}>Proveedores</a>
+              <a onClick={() => scrollToSection('contact-info')}>Contacto</a>
+            </nav>
+          </div>
+          <div className="footer-column footer-column-social">
+            <div className="social-block">
+              <h4 className="footer-column-title">Síguenos</h4>
+              <div className="social-networks">
+                <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+                <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+                <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+              </div>
             </div>
-            <div className="footer-column footer-column-social">
-                <div className="social-block">
-                    <h4 className="footer-column-title">Síguenos</h4>
-                    <div className="social-networks">
-                        <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
-                        <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-                        <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
         <div className="footer-bottom">
-            <p className="copyright-notice">© 2025 Coffee House. Todos los derechos reservados.</p>
-            <Link to="/politicas-de-privacidad" className="footer-link">Política de privacidad</Link>
+          <p className="copyright-notice">© 2025 Coffee House. Todos los derechos reservados.</p>
+          <Link to="/politicas-de-privacidad" className="footer-link">Política de privacidad</Link>
         </div>
       </footer>
     </div>

@@ -13,7 +13,6 @@ const OrderDetailPage = () => {
     const [loading, setLoading] = useState(true);
     const [itemToReview, setItemToReview] = useState(null);
     const { showSuccessAlert, showErrorAlert, showConfirmDialog } = useAlerts();
-    const API_BASE_URL = 'http://localhost:5000';
 
     const fetchOrder = useCallback(async () => {
         try {
@@ -80,7 +79,12 @@ const OrderDetailPage = () => {
                         <div className="product-list">
                             {order.items.map(item => (
                                 <div key={item.id} className="product-card-detail">
-                                    <img src={`${API_BASE_URL}/${item.image}`} alt={item.name} className="product-image-detail" />
+                                    {/* ✅ Usamos la URL absoluta devuelta por el backend */}
+                                    <img 
+                                        src={item.image || 'https://placehold.co/100x100/EFEFEF/8B8B8B?text=Sin+Imagen'} 
+                                        alt={item.name} 
+                                        className="product-image-detail" 
+                                    />
                                     <div className="product-info-detail">
                                         <span className={`status-tag status-${order.status.toLowerCase()}`}>{order.status}</span>
                                         {order.status === 'Entregado' && <p className="delivery-date">Llegó el {order.updated_at}</p>}
@@ -89,7 +93,9 @@ const OrderDetailPage = () => {
                                         <p className="product-quantity-detail">Cantidad: {item.quantity}</p>
                                     </div>
                                     <div className="product-actions-detail">
-                                        <p className="product-price-detail">${new Intl.NumberFormat('es-CO').format(item.price * item.quantity)}</p>
+                                        <p className="product-price-detail">
+                                            ${new Intl.NumberFormat('es-CO').format(item.price * item.quantity)}
+                                        </p>
                                         {order.status === 'Entregado' && (
                                             item.is_reviewed ? (
                                                 <span className="review-submitted">Calificado</span>
@@ -111,14 +117,16 @@ const OrderDetailPage = () => {
                     <div className="order-summary-column">
                         <div className="summary-card">
                             <h3>Detalle de la compra</h3>
-                            <div className="summary-line"><span>Productos ({order.items.length})</span><span>${new Intl.NumberFormat('es-CO').format(order.total_amount)}</span></div>
+                            <div className="summary-line">
+                                <span>Productos ({order.items.length})</span>
+                                <span>${new Intl.NumberFormat('es-CO').format(order.total_amount)}</span>
+                            </div>
                             <div className="order-item">
                                 <span>Envío</span>
                                 <span className='gratis-detalle'>Gratis</span>
                             </div>
                             <div className="summary-line total">
                                 <span>Total</span>
-                                {/* El total ahora es solo el total de los productos */}
                                 <span>${new Intl.NumberFormat('es-CO').format(order.total_amount)}</span>
                             </div>
                             
