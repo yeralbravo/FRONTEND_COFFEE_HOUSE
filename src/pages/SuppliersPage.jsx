@@ -17,6 +17,9 @@ const SuppliersPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
 
+    // ✅ Igual que en servicios: REACT_APP + fallback
+    const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000';
+
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebouncedSearchTerm(searchTerm);
@@ -32,11 +35,10 @@ const SuppliersPage = () => {
             if (debouncedSearchTerm) {
                 params.append('search', debouncedSearchTerm);
             }
-            const res = await axios.get(`http://localhost:5000/api/user/admin?${params.toString()}`, {
+            const res = await axios.get(`${API_BASE_URL}/api/user/admin?${params.toString()}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setUsers(res.data.data.users);
-        // eslint-disable-next-line no-unused-vars
         } catch (err) {
             setError('No se pudo cargar la lista de proveedores.');
         } finally {
