@@ -15,8 +15,8 @@ const AdminHeader = ({ onMenuClick }) => {
     const [notifications, setNotifications] = useState([]);
     const [unreadCount, setUnreadCount] = useState(0);
 
-    // ✅ Usar variable de entorno en vez de localhost
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // ✅ Igual que en servicios: prefijo REACT_APP con fallback
+    const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000';
 
     const fetchNotifications = async () => {
         if (user) {

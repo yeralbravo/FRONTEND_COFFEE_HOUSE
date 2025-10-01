@@ -12,8 +12,8 @@ const AdminSidebar = ({ isOpen, onClose }) => {
     const [isUsersMenuOpen, setUsersMenuOpen] = useState(false);    
     const [isGestionMenuOpen, setGestionMenuOpen] = useState(false);  
 
-    // ✅ Usar variable de entorno en vez de localhost
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // ✅ Igual que en servicios: prefijo REACT_APP con fallback
+    const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000';
 
     // ✅ Evitar duplicación si la URL ya es absoluta
     const profilePicture = user?.profile_picture_url

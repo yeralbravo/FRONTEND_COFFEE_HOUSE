@@ -17,8 +17,8 @@ const SupplierDashboard = () => {
     const [recentProducts, setRecentProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // ✅ Variable de entorno
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // ✅ Igual que en servicios
+    const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000';
 
     useEffect(() => {
         const fetchDashboardData = async () => {

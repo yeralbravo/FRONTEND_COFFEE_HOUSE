@@ -10,8 +10,8 @@ const ActivityLogPage = () => {
     const [filters, setFilters] = useState({ adminName: '', action: '', date: '' });
     const [debouncedFilters, setDebouncedFilters] = useState(filters);
 
-    // ✅ Usar variable de entorno en lugar de localhost
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // ✅ Igual que en los servicios: REACT_APP + fallback a localhost
+    const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000';
 
     useEffect(() => {
         const timerId = setTimeout(() => {

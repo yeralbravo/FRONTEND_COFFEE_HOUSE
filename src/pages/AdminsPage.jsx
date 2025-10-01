@@ -17,8 +17,8 @@ const AdminsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
 
-    // ✅ Variable de entorno para la base de la API
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // ✅ Igual que en servicios: prefijo REACT_APP + fallback
+    const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000';
 
     useEffect(() => {
         const timerId = setTimeout(() => {
